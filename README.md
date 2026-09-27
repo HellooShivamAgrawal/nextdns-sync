@@ -2,6 +2,8 @@
 
 > A lightweight, self-contained web application for managing, comparing, backing up, and synchronizing NextDNS profiles — no installation, backend, or external dependencies required.
 
+This is a public fork of [timohissink/nextdns-sync](https://github.com/timohissink/nextdns-sync), with a root `index.html` for direct hosting. The original project is licensed under GPL-3.0; see [LICENSE](LICENSE).
+
 ![Version](https://img.shields.io/badge/Version-4.0-brightgreen.svg)
 ![License: GPLv3](https://img.shields.io/badge/License-GPLv3-blue.svg)
 ![HTML](https://img.shields.io/badge/Built%20with-HTML%2FJS-orange.svg)
@@ -146,13 +148,24 @@ Export the entire activity log as a text file or clear it whenever desired.
 
 ## Getting Started
 
-### 1. Download
+### Use on iPhone or iPad
 
-Download or clone the repository and save `nextdns-sync.html` to your computer.
+Open the hosted app in Safari: **[NextDNS Sync Tool](https://hellooshivamagrawal.github.io/nextdns-sync/)**.
 
-### 2. Serve Locally
+1. Try `demo` first to explore without contacting NextDNS.
+2. To manage your profiles, open [NextDNS Account → API Key](https://my.nextdns.io/account), copy your key, return to the app, and paste it into the key field.
+3. In Safari, use **Share → Add to Home Screen** for an app-like shortcut.
+4. Review the diff preview before applying changes. Synchronization can add or remove settings on your NextDNS profiles.
 
-Most browsers block API requests from `file://` URLs due to CORS restrictions. Serve the file using a simple local web server:
+On a shared device, leave **Remember** off and log out when you finish. The app makes NextDNS requests directly from your browser; this static site does not receive your API key. The key still grants access to your NextDNS account, so only enter it on a copy of the app you trust.
+
+### Use on desktop
+
+Open the same [hosted app](https://hellooshivamagrawal.github.io/nextdns-sync/) in a modern browser, or run it locally as described below.
+
+### Run locally
+
+Most browsers block API requests from `file://` URLs due to CORS restrictions. Serve `index.html` using a simple local web server:
 
 ```bash
 # Python
@@ -168,10 +181,10 @@ php -S localhost:8080
 Then open:
 
 ```text
-http://localhost:8080/nextdns-sync.html
+http://localhost:8080/
 ```
 
-### 3. Log In
+### Log in
 
 Enter your NextDNS API key.
 
@@ -224,12 +237,11 @@ Frequently used configurations can be saved as **Preset Configurations** for one
 Privacy is a core design principle of this project.
 
 - API keys are **never stored in localStorage**
-- No data is sent to third-party services
-- All requests go directly to `api.nextdns.io`
-- The application runs entirely client-side
+- API requests containing your key go directly from your browser to `api.nextdns.io`; this app has no backend or key-proxy server
+- The app runs client-side; some features also request public blocklist metadata from GitHub and domain icons from DuckDuckGo
 - The full source code can be inspected and audited
 
-If enabled, API keys are stored only in `sessionStorage` and are automatically removed when the browser session ends.
+If **Remember** is enabled, API keys are stored in `sessionStorage` for the browser session. Browser session restoration can keep tabs and their session data available, so do not use this option on a shared device; log out and close the app when finished.
 
 ---
 
@@ -273,7 +285,11 @@ JavaScript must be enabled.
 
 Bug reports, feature requests, and pull requests are welcome.
 
-GitHub repository:
+This fork:
+
+https://github.com/HellooShivamAgrawal/nextdns-sync
+
+Original project:
 
 https://github.com/timohissink/nextdns-sync
 
@@ -287,4 +303,4 @@ See the LICENSE file for details.
 
 ---
 
-Maintained by Timo Hissink.
+Original project by Timo Hissink; this repository is a fork.
